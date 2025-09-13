@@ -1,0 +1,17 @@
+*{margin: -40px; padding: 20px;}
+
+.img_button {
+    opacity: 0.5;
+}
+
+.under_text {
+    opacity: 0.5;
+    transition: 300ms ease;
+    margin-bottom: -300px;
+}
+
+.hovered {
+    opacity: 1;
+    transform: translateY(40px);
+    transition-delay: 500ms;
+}
