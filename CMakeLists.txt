@@ -13,10 +13,18 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 set(RESOURCE_XML "${CMAKE_SOURCE_DIR}/src/resources.xml")
 set(RESOURCE_C "${CMAKE_BINARY_DIR}/resources.c")
 
+# НОВОЕ: Создаем список всех файлов, от которых зависит ресурс
+set(RESOURCE_FILES
+    "${CMAKE_SOURCE_DIR}/resources/main.css"
+    "${CMAKE_SOURCE_DIR}/resources/c_lang_base_image.png"
+    "${CMAKE_SOURCE_DIR}/resources/c_lang_gtk4_image.png"
+)
+
 add_custom_command(
     OUTPUT ${RESOURCE_C}
     COMMAND glib-compile-resources ${RESOURCE_XML} --target=${RESOURCE_C} --generate-source --c-name resources
-    DEPENDS ${RESOURCE_XML}
+    # ИЗМЕНЕНО: Добавляем все файлы в зависимости
+    DEPENDS ${RESOURCE_XML} ${RESOURCE_FILES}
     COMMENT "Generating ${RESOURCE_C} from ${RESOURCE_XML}"
 )
 
