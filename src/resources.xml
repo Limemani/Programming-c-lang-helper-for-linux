@@ -3,6 +3,6 @@
   <gresource prefix="/com/Linux_c_programming_helper">
     <file alias="c_lang_base_image.png">../resources/c_lang_base_image.png</file>
     <file alias="c_lang_gtk4_image.png">../resources/c_lang_gtk4_image.png</file>
-    <file alias="man.css">../resources/main.css</file>
+    <file alias="main.css">../resources/main.css</file>
   </gresource>
 </gresources>
