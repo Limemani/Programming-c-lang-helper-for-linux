@@ -15,7 +15,6 @@ static void on_activate (GtkApplication *app) {
     g_object_unref(css_provider);
 
     GtkWidget *window = adw_application_window_new(app);
-    GtkWidget *header = adw_header_bar_new();
     GtkWidget *content_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     GtkWidget *nav_view = adw_navigation_view_new();
 
@@ -26,10 +25,7 @@ static void on_activate (GtkApplication *app) {
     g_assert(initial_page != NULL);
 
     adw_navigation_view_push(ADW_NAVIGATION_VIEW(nav_view), initial_page);
-
-    adw_header_bar_set_title_widget(ADW_HEADER_BAR(header), adw_window_title_new("Справочник по C", NULL));
     
-    gtk_box_append(GTK_BOX(content_box), header);
     gtk_box_append(GTK_BOX(content_box), nav_view);
 
     adw_application_window_set_content(ADW_APPLICATION_WINDOW(window), content_box);

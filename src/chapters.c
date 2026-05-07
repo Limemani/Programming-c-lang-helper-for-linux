@@ -36,11 +36,9 @@ void text_on_hover_modifier(GtkWidget *parent, GtkWidget *child) {
 }
 
 GtkWidget* create_chapters_page(GtkWidget *nav_view) {
-    GtkWidget *clamp = adw_clamp_new();
     GtkWidget *chapters_h = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 40);
     GtkWidget *chapters_v1 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     GtkWidget *chapters_v2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-
 
 
     GtkWidget *c_lang_base = gtk_button_new();
@@ -73,6 +71,7 @@ GtkWidget* create_chapters_page(GtkWidget *nav_view) {
     g_signal_connect(c_lang_base, "clicked", G_CALLBACK(c_base_clicked), nav_view);
     //g_signal_connect(c_lang_gtk4, "clicked", G_CALLBACK(c_gtk4_clicked), nav_view);
 
+
     gtk_box_append(GTK_BOX(chapters_v1), c_lang_base);
     gtk_box_append(GTK_BOX(chapters_v1), c_lang_base_text);
     
@@ -90,8 +89,6 @@ GtkWidget* create_chapters_page(GtkWidget *nav_view) {
     center2_align(chapters_h);
     center2_align(chapters_v1);
     center2_align(chapters_v2);
-    
-    adw_clamp_set_child(ADW_CLAMP(clamp), chapters_h);
 
-    return clamp;
+    return clamp_init(chapters_h, "Справочник по C");
 }

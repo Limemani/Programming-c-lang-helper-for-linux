@@ -6,8 +6,7 @@
 #define TEXT_BUTTON_SIZE_W 120
 #define TEXT_BUTTON_SIZE_H 20
 
-GtkWidget* create_c_base_page(void) {    
-    GtkWidget *clamp = adw_clamp_new();
+GtkWidget* create_c_base_page(void) {
     GtkWidget *c_base_h = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 15);
     GtkWidget *c_base_v1 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10); 
     GtkWidget *c_base_v2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10); 
@@ -45,7 +44,5 @@ GtkWidget* create_c_base_page(void) {
     start_center_aling(c_base_v2);
     start_center_aling(c_base_v3);
 
-    adw_clamp_set_child(ADW_CLAMP(clamp), c_base_h);
-
-    return clamp;
+    return clamp_init(c_base_h, "Темы по C");
 }

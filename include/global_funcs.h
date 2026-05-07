@@ -5,5 +5,6 @@
 
 void center2_align(GtkWidget *widget);
 void start_center_aling(GtkWidget *widget);
+GtkWidget* clamp_init(GtkWidget *box, const char *title);
 
 #endif
