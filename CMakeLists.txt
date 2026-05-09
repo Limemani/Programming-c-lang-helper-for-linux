@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(LinuxCProgrammingHelper C)
+project(Linux_C_Programming_Helper C)
 
 set(CMAKE_C_STANDARD 23)
 set(CMAKE_C_STANDARD_REQUIRED ON)
