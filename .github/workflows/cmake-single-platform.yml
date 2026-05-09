@@ -32,4 +32,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: LinuxCProgrammingHelper
-        path: ${{github.workspace}}/build/LinuxCProgrammingHelper
+        path: ${{github.workspace}}/build/Linux_C_Programming_Helper

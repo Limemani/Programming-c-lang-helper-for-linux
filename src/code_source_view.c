@@ -113,7 +113,7 @@ static void on_run_clicked(GtkButton *btn, gpointer userdata) {
 
 GtkWidget* create_code_source_page(GtkWindow *parent, const char *initial_code, bool is_ui) {
     GtkWidget *main_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_widget_set_size_request(main_box, 854, 480);
+    gtk_widget_set_size_request(main_box, 1280, 720);
     
     GtkWidget *toolbar = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 10);
     gtk_widget_set_margin_start(toolbar, 10); gtk_widget_set_margin_end(toolbar, 10);
