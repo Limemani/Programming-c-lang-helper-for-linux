@@ -7,6 +7,7 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK4 REQUIRED gtk4)
 pkg_check_modules(ADWAITA REQUIRED libadwaita-1)
+pkg_check_modules(GTKSOURCEVIEW5 REQUIRED gtksourceview-5)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
@@ -31,17 +32,21 @@ add_custom_command(
 add_executable(${PROJECT_NAME} 
     src/main.c
     src/chapters.c
-    src/c_base.c
+    src/theme_list.c
     src/global_funcs.c
+    src/content.c
+    src/code_source_view.c
     ${RESOURCE_C}
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${GTK4_INCLUDE_DIRS}
     ${ADWAITA_INCLUDE_DIRS}
+    ${GTKSOURCEVIEW5_INCLUDE_DIRS}
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     ${GTK4_LIBRARIES}
     ${ADWAITA_LIBRARIES}
+    ${GTKSOURCEVIEW5_LIBRARIES}
 )

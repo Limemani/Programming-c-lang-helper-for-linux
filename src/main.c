@@ -1,6 +1,6 @@
 #include <adwaita.h>
 #include "chapters.h"
-#include "c_base.h"
+#include "theme_list.h"
 
 static void on_activate (GtkApplication *app) {
     GtkCssProvider *css_provider = gtk_css_provider_new();
@@ -15,7 +15,6 @@ static void on_activate (GtkApplication *app) {
     g_object_unref(css_provider);
 
     GtkWidget *window = adw_application_window_new(app);
-    GtkWidget *content_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     GtkWidget *nav_view = adw_navigation_view_new();
 
     GtkWidget *chapters_page_content = create_chapters_page(nav_view);
@@ -25,10 +24,8 @@ static void on_activate (GtkApplication *app) {
     g_assert(initial_page != NULL);
 
     adw_navigation_view_push(ADW_NAVIGATION_VIEW(nav_view), initial_page);
-    
-    gtk_box_append(GTK_BOX(content_box), nav_view);
 
-    adw_application_window_set_content(ADW_APPLICATION_WINDOW(window), content_box);
+    adw_application_window_set_content(ADW_APPLICATION_WINDOW(window), nav_view);
     gtk_window_present(GTK_WINDOW(window));
 }
 

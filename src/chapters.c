@@ -1,19 +1,54 @@
 #include "chapters.h"
-#include "c_base.h"
+#include "theme_list.h"
 #include "global_funcs.h"
+#include "content.h"
 #include <adwaita.h>
 
 #define ELEMENT_SIZE 180
 #define EDGE_SPACING 20
 
 static void c_base_clicked(GtkButton *btn, gpointer userdata) {
-    GtkWidget *c_base_page_content = create_c_base_page();
-    g_assert(c_base_page_content != NULL);
+    GtkWindow *parent_w = GTK_WINDOW(gtk_widget_get_ancestor(GTK_WIDGET(btn), GTK_TYPE_WINDOW));
 
-    AdwNavigationPage *page = adw_navigation_page_new(c_base_page_content, "Основы C");
-    g_assert(page != NULL);
+    if (get_theme_list("Базовый C") != NULL) {
+        GtkWidget *theme_list_page_content = create_theme_list_page(parent_w, "Базовый C");
+        g_assert(theme_list_page_content != NULL);
 
-    adw_navigation_view_push(ADW_NAVIGATION_VIEW(userdata), page);
+        AdwNavigationPage *page = adw_navigation_page_new(theme_list_page_content, "Основы C");
+        g_assert(page != NULL);
+
+        adw_navigation_view_push(ADW_NAVIGATION_VIEW(userdata), page);
+    }
+    else {
+        AdwDialog *msg_window = adw_alert_dialog_new("Тема не имеет source code", "Возникла ошибка подгрузки исходного кода темы, вероятно тема повреждена или не завершена. Обратитесь к автору приложения.");
+        adw_alert_dialog_add_responses(ADW_ALERT_DIALOG(msg_window),
+                            "ok", "ОК",
+                            NULL);
+        adw_alert_dialog_set_close_response(ADW_ALERT_DIALOG(msg_window), "ok");
+        adw_dialog_present(msg_window, GTK_WIDGET(parent_w));
+    }
+}
+
+static void c_gtk4_clicked(GtkButton *btn, gpointer userdata) {
+    GtkWindow *parent_w = GTK_WINDOW(gtk_widget_get_ancestor(GTK_WIDGET(btn), GTK_TYPE_WINDOW));
+
+    if (get_theme_list("GTK 4") != NULL) {
+        GtkWidget *theme_list_page_content = create_theme_list_page(parent_w, "GTK 4");
+        g_assert(theme_list_page_content != NULL);
+
+        AdwNavigationPage *page = adw_navigation_page_new(theme_list_page_content, "Основы GTK 4");
+        g_assert(page != NULL);
+
+        adw_navigation_view_push(ADW_NAVIGATION_VIEW(userdata), page);
+    }
+    else {
+        AdwDialog *msg_window = adw_alert_dialog_new("Тема не имеет source code", "Возникла ошибка подгрузки исходного кода темы, вероятно тема повреждена или не завершена. Обратитесь к автору приложения.");
+        adw_alert_dialog_add_responses(ADW_ALERT_DIALOG(msg_window),
+                            "ok", "ОК",
+                            NULL);
+        adw_alert_dialog_set_close_response(ADW_ALERT_DIALOG(msg_window), "ok");
+        adw_dialog_present(msg_window, GTK_WIDGET(parent_w));
+    }
 }
 
 static void hovered(GtkEventControllerMotion *controller, gpointer userdata) {
@@ -69,7 +104,7 @@ GtkWidget* create_chapters_page(GtkWidget *nav_view) {
 
 
     g_signal_connect(c_lang_base, "clicked", G_CALLBACK(c_base_clicked), nav_view);
-    //g_signal_connect(c_lang_gtk4, "clicked", G_CALLBACK(c_gtk4_clicked), nav_view);
+    g_signal_connect(c_lang_gtk4, "clicked", G_CALLBACK(c_gtk4_clicked), nav_view);
 
 
     gtk_box_append(GTK_BOX(chapters_v1), c_lang_base);
@@ -90,5 +125,5 @@ GtkWidget* create_chapters_page(GtkWidget *nav_view) {
     center2_align(chapters_v1);
     center2_align(chapters_v2);
 
-    return clamp_init(chapters_h, "Справочник по C");
+    return page_init(chapters_h, "Справочник по C");
 }
