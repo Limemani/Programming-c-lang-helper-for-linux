@@ -25,7 +25,7 @@ static void theme_button_clicked(GtkButton *btn, gpointer userdata) {
     else {
         bool is_ui = false;
         const char **ui_themes = get_theme_list("GTK 4");
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; ui_themes[i] != NULL; i++) {
             if (strcmp(theme, ui_themes[i]) == 0) {
                 is_ui = true;
                 break;
@@ -33,7 +33,8 @@ static void theme_button_clicked(GtkButton *btn, gpointer userdata) {
         }
         const char *source_code = get_source_code(theme);
         if (source_code != nullptr) {
-            GtkWidget *code_page_content = create_code_source_page(parent_w, 
+            GtkWidget *code_page_content = create_code_source_page(
+                parent_w, 
                 source_code, 
                 is_ui
             );

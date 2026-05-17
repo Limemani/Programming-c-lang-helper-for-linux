@@ -4,7 +4,9 @@
 const char *main_themes[] = {
     "Базис",
     "Указатели",
-    "Функции"
+    "Функции",
+    "Не рабочая тема",
+    NULL
 };
 
 
@@ -106,7 +108,8 @@ const char* get_source_code(const char *theme_name) {
     }
     else if(strcmp("Виджеты и Контейнеры", theme_name) == 0) {
         return gtk4_code[1];
-    }else if(strcmp("Сигналы и События", theme_name) == 0) {
+    }
+    else if(strcmp("Сигналы и События", theme_name) == 0) {
         return gtk4_code[2];
     }
     else if(strcmp("Libadwaita и Стили", theme_name) == 0) {
